@@ -8,7 +8,10 @@ WHATITDOES="This will send you daily emails of your pihole stats."
 (whiptail --title "$NAMEOFAPP" --yes-button "Skip" --no-button "Proceed" --yesno "Do you want to setup $NAMEOFAPP? $WHATITDOES" 10 80) 
 then
 else
-## Initial stuff
+## Sources and update
+sudo echo 'deb http://mirrordirector.raspbian.org/raspbian/ stretch main contrib non-free rpi' | sudo tee --append /etc/apt/sources.list.d/stretch.list
+sudo apt-get update -y
+## Initial install and download
 sudo apt-get install -t stretch -y npm
 sudo npm install emailjs --save
 sudo npm install simple-git --save
